@@ -8,7 +8,6 @@ router.get("/" ,async(req , res) => {
 // me traigo los datos de la api para guardarlos en la db y sacarlos de la db. Esto lo deberia hacer 1 sola vez.
     try {
         const rawg = await axios.get(`https://api.rawg.io/api/genres?key=${APY_KEY}`)  
-        console.log(rawg)
         rawg.data.results.forEach((g) => {
             Genre.findOrCreate({
                 where:{

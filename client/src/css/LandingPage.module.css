@@ -1,0 +1,48 @@
+.LandingPage{
+    background-image:url("./gamepad-6233583_1920.png");
+    background-size: cover;  /*Escala la imagen al mayor tamaño posible sin estirarla.  , https://cdn.discordapp.com/attachments/472820127797084213/968006901440864296/gamepad-6233583_1920-removebg-preview.png*/
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    background-attachment: fixed;
+    overflow: hidden;
+    position: relative;
+
+}
+
+.titulo{
+    font-size: 6rem;
+    color: rgb(255, 255, 255);
+    margin-left: 0px;
+    top: 30px;
+    text-shadow: 6px 8px 8px rgb(0, 27, 36);
+}
+
+.buttonIngresar{
+    --glow-color: #191630;
+    --enhanced-glow-color: #E6215E;
+    --btn-color: #42BCD5;
+    outline: none;
+    border: 0.2em solid var(--glow-color);
+    padding: 1em 1em;
+    color: var(--glow-color);
+    font-size: 40px;
+    font-weight: bold;
+    background-color: var(--btn-color);
+    border-radius: 1em;
+    text-shadow: 0 0 0.5em var(--glow-color);
+    transition: all 0.9s;
+    margin-top: 470px;
+}
+
+  
+.buttonIngresar:hover{
+    color: var(--btn-color);
+    background-color: var(--glow-color);
+    box-shadow: 0 0 1em 0.2em var(--glow-color),
+      0 0 3em 2em var(--glow-spread-color),
+      inset 0 0 0.75em 0.25em var(--glow-color);
+    cursor: pointer;
+    border: black solid 0.2em;
+}

@@ -65,4 +65,5 @@ module.exports = {
     getApiInfo,
     getDbInfo,
     getAllVideogames,
+    
 }
