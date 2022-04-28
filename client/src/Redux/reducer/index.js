@@ -6,7 +6,8 @@ import { GET_VIDEOGAMES,
   ORDER_BY_RATING,
   GET_NAME_VIDEOGAMES,
   POST_VIDEOGAME,
-  VACIAR_DETAIL
+  VACIAR_DETAIL,
+  CLEAR_VIDEOGAMES
 } from '../constantes';
 
 const initialState = {
@@ -30,7 +31,7 @@ function rootReducer(state= initialState, action) {
         videogames: action.payload,
         allVideogames: action.payload,
         platforms: Array.from(new Set(platforms)),
-        flagLoad: false,
+
       }
     case GET_GENRE:
       return {
@@ -40,16 +41,20 @@ function rootReducer(state= initialState, action) {
     case FILTER_BY_GENRES: 
       const allVideogames = state.allVideogames
       const filtergenre = action.payload === "All" ? allVideogames : allVideogames.filter((e) => e.genres.includes(action.payload))
+      const error = [{id:1 , error: "No hay games en este genero"}]
+      const verificacion = filtergenre.length !== 0 ? filtergenre : error
       return {
         ...state,
-        videogames: filtergenre
+        videogames: verificacion
       }
     case FILTER_CREATED:
       const allvideogames = state.allVideogames
       const filterDB = action.payload === 'created' ? allvideogames.filter((e)=> e.createdInDb) : allvideogames.filter((e) => !e.createdInDb)
+      const errorCreado = [{id:1 , error: "No hay games creados"}]
+      const verificacionCreados = filterDB.length !== 0 ? filterDB : errorCreado
       return {
         ...state,
-        videogames: action.payload === 'All' ? state.allVideogames : filterDB
+        videogames: action.payload === 'All' ? state.allVideogames : verificacionCreados
       }
     case ORDER_BY_NAME:
       const order = action.payload === 'Asc' ? state.allVideogames.sort((a , b) => {
@@ -80,10 +85,11 @@ function rootReducer(state= initialState, action) {
         videogames: orderRating
       }
     case GET_NAME_VIDEOGAMES: 
+      const errorName = [{id:1 , error: "El nombre no existe"}]
+      const verificacionName = action.payload.length !== 0 ? action.payload : errorName
       return {
         ...state,
-        videogames: action.payload,
-        flagLoad: false,
+        videogames: verificacionName,
       }
     case POST_VIDEOGAME:
       return {
@@ -98,6 +104,11 @@ function rootReducer(state= initialState, action) {
       return {
         ...state,
         details:[]
+      }
+    case CLEAR_VIDEOGAMES:
+      return {
+        ...state,
+        videogames:[]
       }
 
       default: 

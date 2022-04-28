@@ -5,7 +5,8 @@ import { GET_VIDEOGAMES,
     ORDER_BY_NAME,
     ORDER_BY_RATING,
     GET_NAME_VIDEOGAMES,
-    VACIAR_DETAIL
+    VACIAR_DETAIL,
+    CLEAR_VIDEOGAMES
  } from '../constantes';
 
  import axios from 'axios';
@@ -44,7 +45,9 @@ export function filterByGenres(payload){
 export function getDetail(id){
     return function (dispatch){
         axios.get(`http://localhost:3001/videogame/${id}`)
+    
         .then(game => {
+            console.log(game.data)
             dispatch({
                 type: GET_DETAIL,
                 payload: game.data
@@ -77,17 +80,13 @@ export function orderByRating(payload){
 
 export function getNameVideogames(name){
     return async function (dispatch){
-        try {
+        
             const json = await axios.get(`http://localhost:3001/videogames?name=${name}`)
             dispatch({
                 type: GET_NAME_VIDEOGAMES,
                 payload: json.data
-            })
-        } catch (error) {
-            console.log(error)
+            })    
         }
-        
-    }
 }
 
 export function postVideogame(payload){
@@ -108,3 +107,12 @@ export function vaciarDetail(payload){
     }
 }
 
+export function clearVideogame(){
+    let rest = [];
+    return function(dispatch){
+        dispatch({
+            type: CLEAR_VIDEOGAMES,
+            payload: rest
+        })
+    }
+}

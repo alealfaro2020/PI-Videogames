@@ -12,6 +12,7 @@
     overflow: hidden;
     max-height: 500px;
     max-width: 350px;
+    margin: 0 auto;
     
   }
 .card:hover {

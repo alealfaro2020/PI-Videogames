@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { getNameVideogames } from '../Redux/actions/index'
+import { getNameVideogames , clearVideogame } from '../Redux/actions/index'
 import { useDispatch } from 'react-redux'
 import style from "../css/SerchBar.module.css"
 
@@ -13,7 +13,6 @@ function SerchBar() {
 
 
   const handleInputChange = (e) => {
-    e.preventDefault()
     setInput(e.target.value)
     if(!re.exec(e.target.value)){
       e.target.value.length > 40 ? setErrors({
@@ -37,6 +36,7 @@ function SerchBar() {
     }else {
       dispatch(getNameVideogames(input))
       setInput("")
+      dispatch(clearVideogame())
     }
   }
   

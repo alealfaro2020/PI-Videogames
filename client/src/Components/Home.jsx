@@ -8,6 +8,7 @@ import Paginado from './Paginado'
 import SerchBar from './SerchBar'
 import style from "../css/Home.module.css"
 import Loading from './Loading'
+import Error from './Error'
 
 
 function Home() {
@@ -60,12 +61,27 @@ function Home() {
     setCurrentPage(1)
     setSortRating(`rating ${e.target.value}`)
   }
-
+  
 
   return (
  
       <div className={style.fondoLoading}>
         <div className={style.fondoLoadingContenido}>
+          
+          <div className={style.clase2}>
+            <div className={style.contenidoTitulo}>
+              <h1 className={style.titulo}>PolloGames</h1>
+              
+            <Paginado
+            videoGamePerPage={videoGamePerPage}
+            allVideoGames={allVideoGames.length}
+            paginado={paginado}
+            currentPage={currentPage}
+            
+          />
+          <SerchBar />
+
+          <div className={style.filtrosTarjetas}>
           <div className={style.clase1}>
             
             <Link to='/videogame'>
@@ -99,7 +115,8 @@ function Home() {
             >
               <option className="options" disabled>Generos</option>
               <option className="options" value="All">All</option>
-              {genres.map((e) => (
+              {
+                genres.map((e) => (
                 <option className='options' key={e.id} value={e.name}>
                   {e.name}
                 </option>
@@ -117,28 +134,14 @@ function Home() {
               <option className="options" value='created'>Created </option>
               <option className="options" value='api'>Api</option>
             </select>
-            
           </div>
-
-          <div className={style.clase2}>
-            <div className={style.contenidoTitulo}>
-              <h1 className={style.titulo}>PolloGames</h1>
-   
-            <Paginado
-            videoGamePerPage={videoGamePerPage}
-            allVideoGames={allVideoGames.length}
-            paginado={paginado}
-            currentPage={currentPage}
-            
-          />
-          <SerchBar />
-
           <div className={style.contenedorCards}>
             {
               currentVideogames.length !== 0 ?
                 currentVideogames?.map((e) => {
                   return (
                     <div key={e.id}>
+                      { e.error ? <div className={style.error}><Error/></div>: 
                       <Link to={"/home/" + e.id}>
                         <Card
                           name={e.name}
@@ -146,106 +149,18 @@ function Home() {
                           genres={e.genres}
                           rating={e.rating}
                         />
-                      </Link>
+                      </Link>}
                     </div>
                   )
-                }) : <Loading />
+                }) 
+                : <Loading />
             }
+          </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-    // <div className={style.fondoLoading}>
-    //   <div className={style.fondoLoadingContenido}>
-    //     <div className={style.contenedorFiltro}>
-    //         <button className={style.button} onClick={handleClick}>Recargar Videojuegos</button>
-    //         <select
-    //           className={style.select}
-    //           defaultValue='Order'
-    //           onChange={handleOrder}
-    //         >
-    //           <option value='Order' disabled>Order</option>
-    //           <option value='Asc'>A-Z</option>
-    //           <option value='Desc'>Z-A</option>
-    //         </select>
-
-    //         <select
-    //           className={style.select}
-    //           defaultValue='Rating'
-    //           onChange={handleOrderRating}
-    //         >
-    //           <option value='Order' disabled>Rating</option>
-    //           <option value='high'>High</option>
-    //           <option value='low'>Low</option>
-    //         </select>
-
-    //         <select
-    //           className={style.select}
-    //           defaultValue='Genres'
-    //           onChange={handleFilterGenres}
-    //         >
-    //           <option className="options" disabled>Generos</option>
-    //           <option className="options" value="All">All</option>
-    //           {genres.map((e) => (
-    //             <option className='options' key={e.id} value={e.name}>
-    //               {e.name}
-    //             </option>
-    //           ))
-    //           }
-    //         </select>
-
-    //         <select
-    //           className={style.select}
-    //           defaultValue='filtrados'
-    //           onChange={handleFilterCreated}
-    //         >
-    //           <option className="options" disabled>Origin</option>
-    //           <option className="options" value='All'>All</option>
-    //           <option className="options" value='created'>Created </option>
-    //           <option className="options" value='api'>Api</option>
-    //         </select>
-    //     </div>
-
-    //     <div>
-    //     <div className={style.contenidoTitulo}>
-    //           <h1 className={style.titulo}>PolloGames</h1>
-    //           <Link to='/videogame'>
-    //           <button className={style.buttonSecond}>Crear Videojuego</button>
-    //         </Link>
-    //         <Paginado
-    //         videoGamePerPage={videoGamePerPage}
-    //         allVideoGames={allVideoGames.length}
-    //         paginado={paginado}
-    //       />
-    //       <SerchBar />
-
-    //       <div className={style.contenedorCards}>
-    //         {
-    //           currentVideogames.length !== 0 ?
-    //             currentVideogames?.map((e) => {
-    //               return (
-    //                 <div key={e.id}>
-    //                   <Link to={"/home/" + e.id}>
-    //                     <Card
-    //                       name={e.name}
-    //                       image={e.image}
-    //                       genres={e.genres}
-    //                       rating={e.rating}
-    //                     />
-    //                   </Link>
-    //                 </div>
-    //               )
-    //             }) : <Loading />
-    //         }
-    //       </div>
-    //       </div>
-    //     </div>
-    //     {/* <div className={style.contenidoHeader}>
-    //    </div> */}  
-    //   </div>
-    // </div>
 
   )
 }

@@ -44,3 +44,9 @@
     border: solid 1px #E6215E;
     margin: 2rem auto;
   }
+
+  .buttonPN:hover {
+    cursor: pointer;
+    background-color: #191630;
+    color: #E6215E ;
+  }

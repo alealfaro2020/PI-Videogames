@@ -11,9 +11,14 @@ router.get("/", async (req, res) => {
         const videogameName = videogamesTotal.filter((e) =>
           e.name.toLowerCase().includes(name.toLowerCase())
         );
-        videogameName.length
-          ? res.status(200).send(videogameName)
-          : res.status(404).send("No existe el Videojuego!!");
+        try {
+          res.status(200).send(videogameName)
+        } catch (error) {
+          res.status(404).send(error);
+        }
+        // videogameName.length
+        //   ? res.status(200).send(videogameName)
+        //   : res.status(404).send({error: "No existe el Videojuego!!"});
       } else {
         res.status(200).send(videogamesTotal);
       }

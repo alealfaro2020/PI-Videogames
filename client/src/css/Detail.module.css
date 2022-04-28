@@ -14,10 +14,7 @@
     background-color: #e6215f37 ;
     box-sizing: border-box;
     border-radius: 30px;
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 3rem auto;
     padding-top: 5px;
 }
 
@@ -44,8 +41,8 @@
 }
 
 .image{
-    height: 410px;
-    width: 730px;
+    
+    width: 60%;
     vertical-align: middle;
     margin-bottom: 20px;
     padding: 0;

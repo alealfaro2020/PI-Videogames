@@ -6,7 +6,8 @@ function Paginado({videoGamePerPage,allVideoGames, paginado,currentPage}) {
   let pageNumbers = [];
   let Paginas = Math.ceil(allVideoGames/videoGamePerPage)
 
-  for(let i = 1 ; i <= Paginas; i++ ){  //math.ceil redondea para arriba.
+
+  for(let i = 1 ; i <= Paginas; i++){  //math.ceil redondea para arriba.
     pageNumbers.push(i)
   }
 
