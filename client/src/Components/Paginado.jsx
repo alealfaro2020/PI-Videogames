@@ -10,7 +10,7 @@ function Paginado({videoGamePerPage,allVideoGames, paginado,currentPage}) {
   for(let i = 1 ; i <= Paginas; i++){  //math.ceil redondea para arriba.
     pageNumbers.push(i)
   }
-
+ 
   return (
     <nav>
       <ul className={style.ul}>

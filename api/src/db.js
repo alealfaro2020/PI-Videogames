@@ -34,7 +34,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Videogame,Genre } = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Videogame.belongsToMany(Genre, { through: "intermediate_table" }); // creo la tabla intermedia con este codigo. 
+Videogame.belongsToMany(Genre, { through: "intermediate_table" }); // creo la tabla intermedia 
 Genre.belongsToMany(Videogame, { through: "intermediate_table" });
 
 module.exports = {

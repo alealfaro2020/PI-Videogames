@@ -16,9 +16,6 @@ router.get("/", async (req, res) => {
         } catch (error) {
           res.status(404).send(error);
         }
-        // videogameName.length
-        //   ? res.status(200).send(videogameName)
-        //   : res.status(404).send({error: "No existe el Videojuego!!"});
       } else {
         res.status(200).send(videogamesTotal);
       }

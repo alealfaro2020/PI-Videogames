@@ -32,10 +32,11 @@ module.exports = (sequelize) => {
     platforms: {
       type: DataTypes.ARRAY(DataTypes.TEXT)
     },
-    createdInDb:{  //Para cuando se haga la distincion entre lo que trae la api y lo que trae la db. Mi videojuego de la db lo va a tener y todo el resto no.
+    createdInDb:{  //Para cuando se haga la distincion entre lo que trae la api y lo que trae la db.
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
     }
+    // Mi videojuego de la db lo va a tener y todo el resto no.
   });
 };
